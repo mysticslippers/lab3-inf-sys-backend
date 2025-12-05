@@ -5,12 +5,16 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
+@Cacheable
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(name = "uk_users_username", columnNames = "username"))
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class User {
 
     @Id
