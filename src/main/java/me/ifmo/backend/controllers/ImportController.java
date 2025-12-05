@@ -12,7 +12,7 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/import")
+@RequestMapping("/import")
 @RequiredArgsConstructor
 public class ImportController {
 
