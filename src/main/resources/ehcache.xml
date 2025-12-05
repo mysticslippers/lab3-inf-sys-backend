@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.ehcache.org/v3"
+        xsi:schemaLocation="http://www.ehcache.org/v3 https://www.ehcache.org/schema/ehcache-core.xsd">
+
+    <cache-template name="entities">
+        <resources>
+            <heap>1000</heap>
+        </resources>
+    </cache-template>
+
+    <cache alias="me.ifmo.backend.entities.Route"
+           uses-template="entities" />
+
+    <cache alias="me.ifmo.backend.entities.User"
+           uses-template="entities" />
+
+    <cache alias="me.ifmo.backend.entities.Coordinates"
+           uses-template="entities" />
+
+    <cache alias="me.ifmo.backend.entities.Location"
+           uses-template="entities" />
+</config>
