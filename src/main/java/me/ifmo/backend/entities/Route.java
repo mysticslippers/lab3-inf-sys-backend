@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +18,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Cacheable
 @Table(name = "routes")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Route {
 
     @Id
