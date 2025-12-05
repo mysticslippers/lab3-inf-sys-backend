@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/me")
 @RequiredArgsConstructor
 public class MeController {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    @GetMapping("/me")
+    @GetMapping
     public ResponseEntity<UserDTO> getCurrentUser(Principal principal) {
         String username = principal.getName();
 
