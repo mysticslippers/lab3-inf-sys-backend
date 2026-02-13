@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: lab3-inf-sys-backend
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/studs
+    username: s368530
+    password: P7Woe7Cwyk2MjZnN
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  thymeleaf:
+    check-template-location: false
+
+  sql:
+    init:
+      mode: always
+      encoding: UTF-8
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: eternal.martyr13579@gmail.com
+    password: "zyza pyuz jjad tmjn"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: 8080
+
+app:
+  websocket:
+    allowed-origins: "*"
+
+  password-reset:
+    frontend-reset-url-template: "http://localhost:5173/reset-password?token=%s"
+    token-ttl-minutes: 15
+    from-email: "eternal.martyr13579@gmail.com"
+
+logging:
+  level:
+    org.springframework.security: INFO
+    org.hibernate.SQL: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: INFO
