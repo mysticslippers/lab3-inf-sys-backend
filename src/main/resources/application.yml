@@ -7,6 +7,13 @@ spring:
     username: s368530
     password: P7Woe7Cwyk2MjZnN
     driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: app-hikari
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
 
   jpa:
     hibernate:
@@ -16,8 +23,18 @@ spring:
     defer-datasource-initialization: true
     properties:
       hibernate:
+        cache:
+          use_second_level_cache: true
+          use_query_cache: false
+          region:
+            factory_class: org.hibernate.cache.jcache.JCacheRegionFactory
+        javax:
+          cache:
+            provider: org.ehcache.jsr107.EhcacheCachingProvider
+            uri: classpath:ehcache.xml
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        generate_statistics: true
 
   thymeleaf:
     check-template-location: false
@@ -47,6 +64,10 @@ server:
   port: 8080
 
 app:
+  cache:
+    l2:
+      stats:
+        enabled: true
   websocket:
     allowed-origins: "*"
 
@@ -54,6 +75,13 @@ app:
     frontend-reset-url-template: "http://localhost:5173/reset-password?token=%s"
     token-ttl-minutes: 15
     from-email: "eternal.martyr13579@gmail.com"
+
+  minio:
+    endpoint: "http://localhost:9000"
+    access-key: "minioadmin"
+    secret-key: "minioadmin"
+    bucket: "imports"
+    create-bucket: true
 
 logging:
   level:
