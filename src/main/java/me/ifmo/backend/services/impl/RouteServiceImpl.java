@@ -3,6 +3,7 @@ package me.ifmo.backend.services.impl;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import me.ifmo.backend.AOP.LogExecution;
+import me.ifmo.backend.AOP.LogL2CacheStats;
 import me.ifmo.backend.DTO.CoordinatesDTO;
 import me.ifmo.backend.DTO.LocationDTO;
 import me.ifmo.backend.DTO.RouteDTO;
@@ -41,12 +42,14 @@ public class RouteServiceImpl implements RouteService {
     private final LocationRepository locationRepository;
 
     @Override
+    @LogL2CacheStats
     public Page<RouteDTO> getAllRoutes(Pageable pageable) {
         return routeRepository.findAll(pageable)
                 .map(mapper::toDto);
     }
 
     @Override
+    @LogL2CacheStats
     public RouteDTO getById(Long id) {
         Route route = routeRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Route with id " + id + " not found"));
