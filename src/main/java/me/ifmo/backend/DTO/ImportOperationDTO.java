@@ -21,4 +21,9 @@ public class ImportOperationDTO {
     private String errorMessage;
     private LocalDateTime startedAt;
     private LocalDateTime finishedAt;
+
+    private String fileObjectKey;
+    private String fileOriginalName;
+    private String fileContentType;
+    private Long fileSizeBytes;
 }
