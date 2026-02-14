@@ -37,6 +37,17 @@ public class ImportTransactionService {
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void attachFileMeta(Long opId, String objectKey, String originalName, String contentType, Long sizeBytes) {
+        ImportOperation op = importOperationRepository.findById(opId)
+                .orElseThrow(() -> new EntityNotFoundException("Import operation not found: " + opId));
+        op.setFileObjectKey(objectKey);
+        op.setFileOriginalName(originalName);
+        op.setFileContentType(contentType);
+        op.setFileSizeBytes(sizeBytes);
+        importOperationRepository.save(op);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void markSuccess(Long opId, int count) {
         ImportOperation op = importOperationRepository.findById(opId)
                 .orElseThrow(() -> new EntityNotFoundException("Import operation not found: " + opId));
@@ -77,7 +88,7 @@ public class ImportTransactionService {
 
             try {
                 validateForCreate(dto, index);
-                
+
                 routeService.create(dto);
 
                 imported++;
