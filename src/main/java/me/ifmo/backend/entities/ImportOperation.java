@@ -40,6 +40,18 @@ public class ImportOperation {
     @Column(name = "finished_at")
     private LocalDateTime finishedAt;
 
+    @Column(name = "file_object_key", length = 1000)
+    private String fileObjectKey;
+
+    @Column(name = "file_original_name", length = 500)
+    private String fileOriginalName;
+
+    @Column(name = "file_content_type", length = 200)
+    private String fileContentType;
+
+    @Column(name = "file_size_bytes")
+    private Long fileSizeBytes;
+
     @PrePersist
     protected void onCreate() {
         if (startedAt == null) {
@@ -60,6 +72,10 @@ public class ImportOperation {
                 ", importedCount=" + importedCount +
                 ", startedAt=" + startedAt +
                 ", finishedAt=" + finishedAt +
+                ", fileObjectKey='" + fileObjectKey + '\'' +
+                ", fileOriginalName='" + fileOriginalName + '\'' +
+                ", fileContentType='" + fileContentType + '\'' +
+                ", fileSizeBytes=" + fileSizeBytes +
                 '}';
     }
 
